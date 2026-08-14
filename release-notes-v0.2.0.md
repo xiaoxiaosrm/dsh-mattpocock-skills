@@ -26,7 +26,7 @@ This is a **community adaptation** of [mattpocock/skills](https://github.com/mat
 ## Install
 
 ```sh
-dsh plugin --profile web add <tarball-url-or-file-path>
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.2.0/mattpocock-community-dsh-engineering-skills-0.2.0.tgz
 # restart the profile, then:
 #   model-invocable skills → auto-available in the agent's skill catalog
 #   user-invocable skills  → pick from the / slash menu or type /name

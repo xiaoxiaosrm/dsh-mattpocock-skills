@@ -1,5 +1,9 @@
 # GitHub Release 草稿 — v0.2.0
 
+> ✅ **状态：v0.2.0 已发布**（2026-08-14）
+> 实际发布地址：https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.2.0
+> 发布正文用的是 `release-notes-v0.2.0.md`。本文件保留为发布记录与 v0.3.0+ 的模板。
+
 以下内容直接复制进 GitHub Releases 页面的 "Write" 框即可。
 
 ---
@@ -35,7 +39,7 @@ This is a **community adaptation** of [mattpocock/skills](https://github.com/mat
 ## Install
 
 ```sh
-dsh plugin --profile web add <tarball-url-or-file-path>
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.2.0/mattpocock-community-dsh-engineering-skills-0.2.0.tgz
 # restart the profile, then:
 #   model-invocable skills → auto-available in the agent's skill catalog
 #   user-invocable skills  → pick from the / slash menu or type /name

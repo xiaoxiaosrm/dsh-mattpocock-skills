@@ -122,10 +122,11 @@ in your message.
 Requires a DeepSeek Harness install (`dsh` on PATH or the repo's `pnpm dsh`).
 
 ```sh
-# from the workspace root of this checkout
+# from the GitHub release (latest published tarball)
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.2.0/mattpocock-community-dsh-engineering-skills-0.2.0.tgz
+
+# or from a local checkout / tarball
 dsh plugin --profile web add file:./mattpocock-dsh-engineering
-# or install the built tarball / GitHub release
-dsh plugin --profile web add <package-tarball>
 ```
 
 Then restart the profile. Verify the bundle loaded and its skills are visible:
@@ -144,7 +145,7 @@ restarts and a session (re)opens.
 > `/setup-matt-pocock-skills` slash command and `docs/agents/issue-tracker.md`
 > that live in the original repository root; run that skill (or provide an
 > issue-tracker) once in your project for the tracking-dependent skills
-> (`code-review`, `triuage`, `to-tickets`) to resolve a spec source.
+> (`code-review`, `triage`, `to-tickets`) to resolve a spec source.
 
 ## Why a plugin vs. just copying to `~/.dsh/skills/`
 
