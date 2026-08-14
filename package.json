@@ -1,0 +1,33 @@
+{
+  "name": "@mattpocock-community/dsh-engineering-skills",
+  "version": "0.2.0",
+  "description": "DeepSeek Harness (DSH) bundle porting Matt Pocock's 'Engineering for Real Engineers' + 'Productivity' Claude-Code skills (SKILL.md set) into a native DSH skill plugin. Same skill bodies, DSH skill discovery.",
+  "license": "MIT",
+  "type": "commonjs",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "claude-code",
+    "skills",
+    "engineering",
+    "productivity"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "skills",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-skill-filesystem": "*"
+  }
+}

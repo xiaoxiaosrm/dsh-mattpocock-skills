@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Packed tarballs (rebuilt on release via `npm pack`)
+*.tgz
+
+# Logs / temp
+*.log
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# pnpm
+.pnpm-store/

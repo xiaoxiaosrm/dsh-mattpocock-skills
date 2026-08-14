@@ -1,0 +1,19 @@
+# @mattpocock-community/dsh-engineering-skills — DSH bundle layer
+#
+# Brings the "Engineering for Real Engineers" skill set (originally distributed
+# as a Claude Code plugin by mattpocock/skills) into DeepSeek Harness as native
+# discoverable skills. This patch re-targets the existing host `skill-filesystem`
+# row so it ALSO scans this bundle's bundled `skills/` directory, in addition to
+# the project/user skill roots it already discovers.
+#
+# The `baseUrl` in a deepseek-harness profile is the profile directory, and this
+# bundle's own `skills/` dir that traveled into
+# `<profile>/node_modules/@mattpocock-community/dsh-engineering-skills/skills`
+# (pnpm symlink-transparent), so a relative path off `baseUrl` resolves to it on
+# every supported volume layout.
+
+- id: skill-filesystem
+  name: '@deepseek-ai/dsh-skill-filesystem'
+  config:
+    customSkillDirs:
+      - !!js process.getBuiltinModule('node:url').fileURLToPath(new URL('node_modules/@mattpocock-community/dsh-engineering-skills/skills/', baseUrl))
