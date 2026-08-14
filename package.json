@@ -4,6 +4,13 @@
   "description": "DeepSeek Harness (DSH) bundle porting Matt Pocock's 'Engineering for Real Engineers' + 'Productivity' Claude-Code skills (SKILL.md set) into a native DSH skill plugin. Same skill bodies, DSH skill discovery.",
   "license": "MIT",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/<your-username>/dsh-engineering-skills.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "dsh",
     "dsh-plugin",

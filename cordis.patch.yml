@@ -6,11 +6,21 @@
 # row so it ALSO scans this bundle's bundled `skills/` directory, in addition to
 # the project/user skill roots it already discovers.
 #
-# The `baseUrl` in a deepseek-harness profile is the profile directory, and this
-# bundle's own `skills/` dir that traveled into
-# `<profile>/node_modules/@mattpocock-community/dsh-engineering-skills/skills`
-# (pnpm symlink-transparent), so a relative path off `baseUrl` resolves to it on
-# every supported volume layout.
+# Path resolution notes (verified against app-boot/profile.ts and the official
+# plugin docs at deepseek-harness.github.io):
+#
+# - In a bundle patch layer, `baseUrl` is the PROFILE directory
+#   (`$DSH_HOME/profiles/<name>/`) — confirmed by app-boot source
+#   ("The Loader's `baseUrl` is the profile directory") and the official
+#   "Package and install a plugin" docs.
+# - `dsh plugin add` installs this package into
+#   `<profile>/node_modules/@mattpocock-community/dsh-engineering-skills/`
+#   (pnpm manages the tree; the directory is symlink-transparent), so the
+#   relative URL below resolves to this bundle's own `skills/` directory on
+#   every supported volume layout.
+# - If the package is ever relocated outside a profile's `node_modules`
+#   (manual move, non-pnpm layout, vendored copy), this expression must be
+#   adjusted to the actual location.
 
 - id: skill-filesystem
   name: '@deepseek-ai/dsh-skill-filesystem'

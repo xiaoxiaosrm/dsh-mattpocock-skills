@@ -153,6 +153,10 @@ restarts and a session (re)opens.
 - A single `cordis.patch.yml` appends this `skills/` root to the host
   `skill-filesystem` provider — no user-skill-root pollution, no manual copies.
 
+> **Note:** the npm tarball intentionally ships only the runtime files
+> (`skills/`, `cordis.patch.yml`, `LICENSE`, `README.md`). The full change
+> history lives in the repository's `CHANGELOG.md` on GitHub.
+
 ## License & attribution
 
 MIT. The skill bodies are adapted from
