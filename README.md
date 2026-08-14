@@ -1,5 +1,12 @@
 # Matt Pocock Engineering Skills — for DeepSeek Harness (DSH)
 
+> **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
+> the upstream project. The skill bodies were **written by Matt Pocock**
+> ([mattpocock/skills](https://github.com/mattpocock/skills), MIT, © Matt Pocock)
+> — we did **not** author them. We only re-arranged them into DSH's skill layout
+> and wrapped them in a DSH bundle plugin. If you find them useful, **star the
+> upstream repo**. License & attribution: [LICENSE](./LICENSE).
+
 A DeepSeek Harness **bundle plugin** that ports Matt Pocock's
 [_"Skills for Real Engineers" / Engineering — straight from my `.agents` directory_](https://github.com/mattpocock/skills)
 skill set into native, discoverable DSH skills.
