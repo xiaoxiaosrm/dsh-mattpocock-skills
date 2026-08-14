@@ -6,7 +6,7 @@
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/<your-username>/dsh-engineering-skills.git"
+    "url": "git+https://github.com/xiaoxiaosrm/dsh-mattpocock-skills.git"
   },
   "publishConfig": {
     "access": "public"
