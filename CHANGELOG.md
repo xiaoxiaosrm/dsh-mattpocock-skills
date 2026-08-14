@@ -4,7 +4,19 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
-## [Unreleased]
+## [0.3.0] - 2026-08-14
+
+### Fixed
+
+- **Skills were invisible on the DSH web surface.** The bundle's
+  `cordis.patch.yml` appended `customSkillDirs` to the shared host
+  `skill-filesystem` row, but the web profile ships that row
+  `disabled: true` ("presets own local discovery"), so none of the 25 skills
+  loaded in the web UI. This release instead **registers a dedicated host
+  `skill-filesystem` instance** (`skill-filesystem-mattpocock`, `providerName:
+  mattpocock`, `includeDefaultRoots: false`) into DSH's global skill layer, so
+  the set loads in every surface (web, TUI, headless). Verified with
+  `dsh --profile web --dump-config`.
 
 ### Added
 
@@ -12,6 +24,12 @@ and uses calendar-ish versions (`0.x.0`).
   requirements, what we accept/decline).
 - GitHub issue templates (`bug_report.yml`, `feature_request.yml`, `config.yml`)
   and pull-request template (`.github/PULL_REQUEST_TEMPLATE.md`).
+
+### Changed
+
+- `package.json` version `0.2.0` → `0.3.0`.
+- README: install/verify commands now reference `skill-filesystem-mattpocock`
+  and the v0.3.0 tarball; "Why a plugin" explains the new global-layer insert.
 
 ## [0.2.0] - 2026-08-14
 

@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
-[![Release v0.2.0](https://img.shields.io/badge/release-v0.2.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.2.0)
+[![Release v0.3.0](https://img.shields.io/badge/release-v0.3.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.3.0)
 [![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
 
 > **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
@@ -129,7 +129,7 @@ Requires a DeepSeek Harness install (`dsh` on PATH or the repo's `pnpm dsh`).
 
 ```sh
 # from the GitHub release (latest published tarball)
-dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.2.0/mattpocock-community-dsh-engineering-skills-0.2.0.tgz
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.3.0/mattpocock-community-dsh-engineering-skills-0.3.0.tgz
 
 # or from a local checkout / tarball
 dsh plugin --profile web add file:./mattpocock-dsh-engineering
@@ -138,12 +138,12 @@ dsh plugin --profile web add file:./mattpocock-dsh-engineering
 Then restart the profile. Verify the bundle loaded and its skills are visible:
 
 ```sh
-dsh --profile web --dump-config | grep -A3 'skill-filesystem'
+dsh --profile web --dump-config | grep -A5 'skill-filesystem-mattpocock'
 ```
 
-The skills appear in the model's catalog alongside your normal local skills.
-User-only skills additionally appear in the `/` slash menu after the profile
-restarts and a session (re)opens.
+The skills appear in the model's catalog alongside your normal local skills —
+on every DSH surface (web, TUI, headless). User-only skills additionally appear
+in the `/` slash menu after the profile restarts and a session (re)opens.
 
 > **Note on `agent` resource files.** The `agents/*.yaml` companions are Claude
 > Code interface descriptors and are **not** interpreted by DSH. They ship only
@@ -157,8 +157,15 @@ restarts and a session (re)opens.
 
 - Distributes and version-skills from one deliverable across machines/repos.
 - Lives under your profile's `node_modules`, so a `dsh plugin remove` cleans it.
-- A single `cordis.patch.yml` appends this `skills/` root to the host
-  `skill-filesystem` provider — no user-skill-root pollution, no manual copies.
+- A single `cordis.patch.yml` **registers its own dedicated host
+  `skill-filesystem` instance** (`skill-filesystem-mattpocock`) into DSH's
+  **global skill layer** — so the set loads in **every** surface (web, TUI,
+  headless). v0.3.0 intentionally does **not** patch the shared
+  `skill-filesystem` row: the web profile ships that row `disabled` ("presets
+  own local discovery"), so appending `customSkillDirs` to it made the whole
+  set invisible on web. Instead this bundle inserts a distinct instance with
+  `providerName: mattpocock` and `includeDefaultRoots: false`, isolating its
+  discovery to exactly this bundle's `skills/` directory.
 
 > **Note:** the npm tarball intentionally ships only the runtime files
 > (`skills/`, `cordis.patch.yml`, `LICENSE`, `README.md`). The full change

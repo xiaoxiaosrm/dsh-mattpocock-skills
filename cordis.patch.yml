@@ -2,9 +2,27 @@
 #
 # Brings the "Engineering for Real Engineers" skill set (originally distributed
 # as a Claude Code plugin by mattpocock/skills) into DeepSeek Harness as native
-# discoverable skills. This patch re-targets the existing host `skill-filesystem`
-# row so it ALSO scans this bundle's bundled `skills/` directory, in addition to
-# the project/user skill roots it already discovers.
+# discoverable skills.
+#
+# v0.3.0 fix: skills are registered as a repository-provided host
+# `skill-filesystem` instance in the global skill layer, so they load in EVERY
+# DSH surface (web, TUI, headless).
+#
+# Why this changed: the older patch targeted the shared host `skill-filesystem`
+# row (`id: skill-filesystem`) and appended `customSkillDirs` to it. In the Web
+# profile, though, `@deepseek-ai/dsh-web-app` deliberately disables that host
+# row ("presets own local discovery"): skills are discovered by each agent
+# preset's own `skill-filesystem`, so patching the disabled host row made the
+# whole set invisible on the web surface.
+#
+# Instead of touching the (sometimes) disabled shared row, this bundle INSERTS
+# its own host `skill-filesystem` instance. DSH's skill registry is layered:
+# "host rows and repository plugins land in the global layer" and every agent
+# reads the merged result of the global layer plus its own scope chain
+# (doc: packages/skill/skill/README.md). A distinct `providerName` avoids
+# colliding with a preset's default `filesystem` provider, and
+# `includeDefaultRoots: false` keeps this instance scanning ONLY this bundle's
+# own `skills/` directory (it must not re-scan `~/.dsh/skills` or project roots).
 #
 # Path resolution notes (verified against app-boot/profile.ts and the official
 # plugin docs at deepseek-harness.github.io):
@@ -22,8 +40,11 @@
 #   (manual move, non-pnpm layout, vendored copy), this expression must be
 #   adjusted to the actual location.
 
-- id: skill-filesystem
-  name: '@deepseek-ai/dsh-skill-filesystem'
-  config:
-    customSkillDirs:
-      - !!js process.getBuiltinModule('node:url').fileURLToPath(new URL('node_modules/@mattpocock-community/dsh-engineering-skills/skills/', baseUrl))
+- insert:
+    - id: skill-filesystem-mattpocock
+      name: '@deepseek-ai/dsh-skill-filesystem'
+      config:
+        providerName: mattpocock
+        includeDefaultRoots: false
+        customSkillDirs:
+          - !!js process.getBuiltinModule('node:url').fileURLToPath(new URL('node_modules/@mattpocock-community/dsh-engineering-skills/skills/', baseUrl))
