@@ -1,5 +1,11 @@
 # Matt Pocock Engineering Skills — for DeepSeek Harness (DSH)
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
+[![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
+[![Release v0.2.0](https://img.shields.io/badge/release-v0.2.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.2.0)
+[![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
+
 > **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
 > the upstream project. The skill bodies were **written by Matt Pocock**
 > ([mattpocock/skills](https://github.com/mattpocock/skills), MIT, © Matt Pocock)
