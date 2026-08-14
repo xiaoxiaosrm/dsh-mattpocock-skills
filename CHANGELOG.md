@@ -4,6 +4,15 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
+## [Unreleased]
+
+### Added
+
+- `CONTRIBUTING.md` — contribution guidelines (layout rules, frontmatter
+  requirements, what we accept/decline).
+- GitHub issue templates (`bug_report.yml`, `feature_request.yml`, `config.yml`)
+  and pull-request template (`.github/PULL_REQUEST_TEMPLATE.md`).
+
 ## [0.2.0] - 2026-08-14
 
 ### Added

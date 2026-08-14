@@ -1,0 +1,35 @@
+---
+name: Feature request
+about: Suggest an improvement to the DSH integration or packaging
+title: "[feat] "
+labels: enhancement
+assignees: ""
+---
+
+<!-- Thanks for the suggestion! -->
+
+## What would you like to see
+
+<!-- A clear description of the feature/improvement. -->
+
+## Why it helps
+
+<!-- What problem does it solve for you or other users? -->
+
+## Relation to upstream
+
+<!-- 
+Is this about the DSH packaging layer (this repo's job), or about the skill
+bodies themselves (upstream mattpocock/skills' job)?
+
+If the skill content is wrong, please take it upstream:
+https://github.com/mattpocock/skills
+-->
+
+## Proposed approach (optional)
+
+<!-- Sketch of how it could work. -->
+
+## Notes
+
+<!-- Anything else? -->

@@ -1,0 +1,45 @@
+---
+name: Bug report
+about: Report a problem with the DSH packaging/installation of these skills
+title: "[bug] "
+labels: bug
+assignees: ""
+---
+
+<!-- Thanks for reporting! Please fill in as much as you can. -->
+
+## What happened
+
+<!-- What did you expect to happen, and what actually happened? -->
+
+## Environment
+
+- DSH version / install method: <!-- e.g. built from source, npm install, pnpm dsh -->
+- Profile used: <!-- e.g. web, headless -->
+- Plugin install method: <!-- e.g. dsh plugin add <tarball>, file: checkout, npm -->
+- OS: <!-- e.g. Windows 11, macOS 14, Ubuntu 24.04 -->
+- Node version: <!-- e.g. v24.15.0 -->
+
+## Steps to reproduce
+
+1. ...
+
+## What I see
+
+<!-- Paste error output, e.g. from `dsh --profile web --dump-config`, boot logs, or the skill catalog. -->
+
+```
+(paste here)
+```
+
+## Skills affected
+
+<!-- e.g. all skills / code-review only / teach not appearing in / menu -->
+
+## Possible cause (optional)
+
+<!-- If you have a guess, share it. -->
+
+## Notes
+
+<!-- Anything else? -->
