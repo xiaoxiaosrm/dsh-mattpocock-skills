@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
-[![Release v0.3.0](https://img.shields.io/badge/release-v0.3.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.3.0)
+[![Release v0.4.0](https://img.shields.io/badge/release-v0.4.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.4.0)
 [![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
 
 > **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
@@ -21,7 +21,7 @@ This is a **skill-set adaptation**, not a fork of the Claude Code plugin harness
 the `SKILL.md` bodies are preserved as-is (same prompts, same process),
 re-arranged so DSH's one-level skill discovery (`<root>/<name>/SKILL.md`) finds them.
 
-## Contents — 18 Engineering skills + 7 Productivity skills
+## Contents — 27 skills (18 Engineering + 7 Productivity + 2 experimental)
 
 ### Engineering (18)
 
@@ -58,6 +58,16 @@ re-arranged so DSH's one-level skill discovery (`<root>/<name>/SKILL.md`) finds 
 | `wait-what` | The "wait, what?" second look at a claim or plan |
 | `writing-for-agents` | Write docs/instructions optimized for agents (SKILL-MECHANICS.md) |
 
+### Experimental (2, from upstream's in-progress beta channel)
+
+| Skill | What it does |
+|---|---|
+| `retro` | **User-invocable only.** Conduct a retrospective on a coding session and suggest improvements to the coding agent's environment for future runs. |
+| `implement-spec` | **User-invocable only.** Implement a written spec as a single PR, working its tickets as a task graph with a grab-ready frontier. |
+
+> Both skills ship from upstream's `skills/in-progress/` beta channel — they
+> are **experimental** and their content may change as upstream iterates.
+
 > **About `teach`:** it ships with `disable-model-invocation: true` (upstream
 > design) — the model cannot load it on its own, so it does **not** appear in
 > the model's skill catalog. It is a *user-invocable* skill: it shows up in the
@@ -70,13 +80,13 @@ them exactly like any local skill.
 
 ## How to invoke each skill
 
-DSH classifies skills by who may load them. This bundle's 25 skills fall into
+DSH classifies skills by who may load them. This bundle's 27 skills fall into
 two groups (verified against the real `skill-filesystem` provider):
 
 | Group | Skills | How to use |
 |---|---|---|
 | **Model + user** (11) | `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grilling`, `prototype`, `research`, `resolving-merge-conflicts`, `tdd`, `wizard`, `writing-for-agents` | The model may load them on its own when a task matches; they also appear in the `/` slash menu for you to force-invoke. |
-| **User only** (14) | `teach`, `ask-matt`, `grill-me`, `grill-with-docs`, `handoff`, `implement`, `improve-codebase-architecture`, `setup-matt-pocock-skills`, `to-questionnaire`, `to-spec`, `to-tickets`, `triage`, `wait-what`, `wayfinder` | Only *you* can start them — pick them in the `/` slash menu, or type `/name <args>` in the composer. The model will not self-invoke these (several are `disable-model-invocation` upstream). |
+| **User only** (16) | `teach`, `ask-matt`, `grill-me`, `grill-with-docs`, `handoff`, `implement`, `implement-spec`, `improve-codebase-architecture`, `retro`, `setup-matt-pocock-skills`, `to-questionnaire`, `to-spec`, `to-tickets`, `triage`, `wait-what`, `wayfinder` | Only *you* can start them — pick them in the `/` slash menu, or type `/name <args>` in the composer. The model will not self-invoke these (several are `disable-model-invocation` upstream). |
 
 > **Why so many are user-only:** upstream marks interactive coaching flows
 > (`teach`, `grill-me`, `wait-what`, `to-questionnaire`) and work-intake flows
@@ -129,7 +139,7 @@ Requires a DeepSeek Harness install (`dsh` on PATH or the repo's `pnpm dsh`).
 
 ```sh
 # from the GitHub release (latest published tarball)
-dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.3.0/mattpocock-community-dsh-engineering-skills-0.3.0.tgz
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.4.0/mattpocock-community-dsh-engineering-skills-0.4.0.tgz
 
 # or from a local checkout / tarball
 dsh plugin --profile web add file:./mattpocock-dsh-engineering
@@ -160,12 +170,13 @@ in the `/` slash menu after the profile restarts and a session (re)opens.
 - A single `cordis.patch.yml` **registers its own dedicated host
   `skill-filesystem` instance** (`skill-filesystem-mattpocock`) into DSH's
   **global skill layer** — so the set loads in **every** surface (web, TUI,
-  headless). v0.3.0 intentionally does **not** patch the shared
+  headless). The bundle does **not** patch the shared
   `skill-filesystem` row: the web profile ships that row `disabled` ("presets
   own local discovery"), so appending `customSkillDirs` to it made the whole
   set invisible on web. Instead this bundle inserts a distinct instance with
   `providerName: mattpocock` and `includeDefaultRoots: false`, isolating its
-  discovery to exactly this bundle's `skills/` directory.
+  discovery to exactly this bundle's `skills/` directory (mechanism unchanged
+  since v0.3.0).
 
 > **Note:** the npm tarball intentionally ships only the runtime files
 > (`skills/`, `cordis.patch.yml`, `LICENSE`, `README.md`). The full change
