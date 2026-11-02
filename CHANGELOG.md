@@ -4,6 +4,14 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
+## [Unreleased]
+
+### Docs
+
+- README is now bilingual: English in [`README.md`](./README.md), Simplified
+  Chinese in [`README.zh.md`](./README.zh.md), cross-linked at the top. The npm
+  tarball ships both.
+
 ## [0.5.0] - 2026-11-02
 
 ### Added

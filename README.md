@@ -1,5 +1,7 @@
 # Matt Pocock Agent Skills — for DeepSeek Harness (DSH)
 
+**English** | [中文](README.zh.md)
+
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
@@ -177,8 +179,9 @@ records the synced commit and plugin version.
   (the profile directory).
 
 > **Note:** the npm tarball intentionally ships only the runtime files
-> (`skills/`, `upstream.json`, `cordis.patch.yml`, `LICENSE`, `README.md`). The
-> full change history lives in the repository's `CHANGELOG.md` on GitHub.
+> (`skills/`, `upstream.json`, `cordis.patch.yml`, `LICENSE`, `README.md`,
+> `README.zh.md`). The full change history lives in the repository's
+> `CHANGELOG.md` on GitHub.
 
 ## License & attribution
 
