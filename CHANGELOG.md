@@ -4,13 +4,25 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
-## [Unreleased]
+## [0.5.1] - 2026-11-02
 
-### Docs
+### Changed
 
-- README is now bilingual: English in [`README.md`](./README.md), Simplified
-  Chinese in [`README.zh.md`](./README.zh.md), cross-linked at the top. The npm
-  tarball ships both.
+- **Ships 9 enabled skills instead of all 39.** [`enabled-skills.json`](./enabled-skills.json)
+  now lists the shipped set: `grill-with-docs`, `research` (engineering) and the
+  seven productivity skills. The other 30 (18 engineering, 4 misc, 8 in-progress)
+  are removed from `skills/` and the npm tarball; add a name back to that file
+  and run `npm run sync:upstream -- --prune` to restore it.
+- `scripts/sync-upstream.mjs` honors `enabled-skills.json`; `--all` ignores it
+  and ships every upstream skill. `upstream.json` now records
+  `availableSkillCount`, `skillCount`, `enabledSkills`, and `disabledSkills`.
+- README (English and Chinese) rewritten for the 9-skill set, with the disabled
+  list and the restore workflow.
+- `package.json` version `0.5.0` → `0.5.1`; the tarball now ships
+  `enabled-skills.json`.
+- README is bilingual: English in [`README.md`](./README.md), Simplified Chinese
+  in [`README.zh.md`](./README.zh.md), cross-linked at the top. The npm tarball
+  ships both.
 
 ## [0.5.0] - 2026-11-02
 

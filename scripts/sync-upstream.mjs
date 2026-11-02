@@ -10,10 +10,14 @@
  * @deepseek-ai/dsh-skill-filesystem (name = directory, kebab-case,
  * description present, kebab-case invocation keys), and only then writes.
  *
+ * The package ships only the skills listed in `<repo>/enabled-skills.json`;
+ * delete that file (or pass --all) to ship every upstream skill.
+ *
  * Usage:
  *   node scripts/sync-upstream.mjs --check    validate and report without writing
- *   node scripts/sync-upstream.mjs --prune    write, and delete skills upstream removed
- *   node scripts/sync-upstream.mjs            write, keep skills upstream removed
+ *   node scripts/sync-upstream.mjs --prune    write, and delete skills not enabled
+ *   node scripts/sync-upstream.mjs --all      ignore enabled-skills.json, ship all
+ *   node scripts/sync-upstream.mjs            write, keep skills not enabled
  */
 
 import { createHash } from 'node:crypto'
@@ -245,10 +249,29 @@ async function main() {
   }
   if (problems > 0) fail(`${problems} validation problems; nothing written`)
 
+  const enabledFile = path.join(root, 'enabled-skills.json')
+  const shipAll = args.has('--all')
+  const config = shipAll ? undefined : await readJson(enabledFile).catch(() => undefined)
+  if (!shipAll && config === undefined) warn('enabled-skills.json not found; shipping every upstream skill')
+  const enabled = config === undefined ? undefined : new Set(config.enabled ?? [])
+  if (enabled !== undefined) {
+    if (enabled.size === 0) fail('enabled-skills.json lists no skills')
+    for (const name of enabled) {
+      if (!upstream.has(name)) fail(`enabled-skills.json names an unknown upstream skill: "${name}"`)
+    }
+  }
+  const selected = new Map([...upstream].filter(([name]) => enabled === undefined || enabled.has(name)))
+  const disabled = [...upstream.keys()].filter((name) => !selected.has(name)).sort()
+  console.log(
+    `sync-upstream: ${upstream.size} skills upstream, shipping ${selected.size}` +
+      (enabled === undefined ? ' (all)' : ' (enabled-skills.json)'),
+  )
+  if (disabled.length > 0) console.log(`  disabled: ${disabled.join(', ')}`)
+
   const existing = await readExisting()
-  const added = [...upstream.keys()].filter((name) => !existing.has(name)).sort()
-  const updated = [...upstream.keys()].filter((name) => existing.has(name) && !sameFiles(existing.get(name), upstream.get(name).files)).sort()
-  const removed = [...existing.keys()].filter((name) => !upstream.has(name)).sort()
+  const added = [...selected.keys()].filter((name) => !existing.has(name)).sort()
+  const updated = [...selected.keys()].filter((name) => existing.has(name) && !sameFiles(existing.get(name), selected.get(name).files)).sort()
+  const removed = [...existing.keys()].filter((name) => !selected.has(name)).sort()
 
   console.log(`sync-upstream: added ${added.length}, updated ${updated.length}, removed ${removed.length}`)
   if (added.length) console.log(`  added: ${added.join(', ')}`)
@@ -261,8 +284,8 @@ async function main() {
     return
   }
 
-  for (const name of [...upstream.keys()].sort()) {
-    const entry = upstream.get(name)
+  for (const name of [...selected.keys()].sort()) {
+    const entry = selected.get(name)
     const dir = path.join(skillsDir, name)
     await fs.rm(dir, { recursive: true, force: true })
     for (const [relative, buffer] of entry.files) {
@@ -274,7 +297,7 @@ async function main() {
   }
 
   if (removed.length > 0) {
-    if (!prune) warn(`kept ${removed.length} skills upstream no longer ships; run with --prune to delete them`)
+    if (!prune) warn(`kept ${removed.length} skills that are not enabled; run with --prune to delete them`)
     else for (const name of removed) await fs.rm(path.join(skillsDir, name), { recursive: true, force: true })
   }
 
@@ -287,12 +310,17 @@ async function main() {
     ref: 'main',
     commit: commit ?? previous.commit ?? null,
     pluginVersion: manifest.version,
-    skillCount: upstream.size,
+    availableSkillCount: upstream.size,
+    skillCount: selected.size,
+    enabledSkills: enabled === undefined ? [...upstream.keys()].sort() : [...enabled].sort(),
+    disabledSkills: disabled,
     buckets,
     syncedAt: new Date().toISOString(),
   }
   await fs.writeFile(path.join(root, 'upstream.json'), `${JSON.stringify(record, null, 2)}\n`)
-  console.log(`sync-upstream: wrote ${upstream.size} skills and upstream.json (${REPOSITORY}@${record.commit ?? 'unknown'})`)
+  console.log(
+    `sync-upstream: wrote ${selected.size} of ${upstream.size} skills and upstream.json (${REPOSITORY}@${record.commit ?? 'unknown'})`,
+  )
 }
 
 function sameFiles(left, right) {

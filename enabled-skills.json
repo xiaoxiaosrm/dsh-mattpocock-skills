@@ -1,0 +1,14 @@
+{
+  "_comment": "Skills this package ships. Remove a name to exclude it, add one back to restore it, then run `npm run sync:upstream -- --prune`. Pass `--all` to ignore this file and ship every upstream skill.",
+  "enabled": [
+    "grill-with-docs",
+    "research",
+    "grill-me",
+    "grilling",
+    "handoff",
+    "teach",
+    "to-questionnaire",
+    "wait-what",
+    "writing-for-agents"
+  ]
+}

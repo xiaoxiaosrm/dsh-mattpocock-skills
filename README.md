@@ -6,7 +6,7 @@
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
 [![DSH runtime](https://img.shields.io/badge/DSH-0.2.1--rc.5-0A84FF.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Release v0.5.0](https://img.shields.io/badge/release-v0.5.0-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/tag/v0.5.0)
+[![Release v0.5.1](https://img.shields.io/badge/release-v0.5.1-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases)
 [![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
 
 > **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
@@ -31,34 +31,24 @@ Synced with upstream **`mattpocock-skills` 1.3.2** (commit
 [`4ae2317`](https://github.com/mattpocock/skills/commit/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d),
 2026-10-31). Adapted and verified against **DSH 0.2.1-rc.5**.
 
-## Contents — 39 skills
+This package ships a curated set: **9 enabled skills** (`grill-with-docs`,
+`research`, and the seven productivity skills). The other 30 upstream skills are
+disabled and can be switched back on through
+[`enabled-skills.json`](./enabled-skills.json).
 
-### Engineering (20)
+## Contents — 9 enabled skills
+
+`enabled-skills.json` lists what this package ships. Everything else upstream
+provides is disabled; see [Disabled skills](#disabled-skills) to restore one.
+
+### Engineering (2 of 20)
 
 | Skill | What it does |
 |---|---|
-| `ask-matt` | Router: which skill or flow fits your situation |
-| `code-review` | Two-axis review (Standards + Spec) of a diff from a fixed point, via parallel sub-agents |
-| `codebase-design` | Shared vocabulary and discipline for designing deep modules |
-| `diagnosing-bugs` | Disciplined diagnosis loop for hard bugs and performance regressions |
-| `domain-modeling` | Build and sharpen the project's domain model, glossary, and ADRs |
 | `grill-with-docs` | Grilling session that also builds the domain model and docs as it goes |
-| `implement` | Implement a spec or tickets, driving TDD at pre-agreed seams |
-| `implement-spec` | Implement a whole spec on one integration branch, ticket by ticket |
-| `improve-codebase-architecture` | Scan for deepening opportunities, report as HTML, then grill one |
-| `pr` | Write the PR body from a fixed template (summary, evidence, merge danger) |
-| `prototype` | Throwaway prototype to answer a design question (logic or UI) |
 | `research` | Research a question against primary sources into a cited Markdown file |
-| `retro` | Retrospective on a coding session, with environment improvements |
-| `setup-matt-pocock-skills` | Per-repo setup: issue tracker, triage labels, domain doc layout |
-| `tdd` | Red-green-refactor discipline with mocking and test guides |
-| `to-spec` | Turn the current conversation into a spec on the issue tracker |
-| `to-tickets` | Break a plan or spec into tracer-bullet tickets with blocking edges |
-| `triage` | Move issues and external PRs through a triage state machine |
-| `wayfinder` | Plan work too large for one session as a shared map of decision tickets |
-| `wizard` | Generate an interactive bash wizard for steps only a human can perform |
 
-### Productivity (7)
+### Productivity (7 of 7)
 
 | Skill | What it does |
 |---|---|
@@ -70,43 +60,40 @@ Synced with upstream **`mattpocock-skills` 1.3.2** (commit
 | `wait-what` | Re-pitch a message that did not land, in plain language |
 | `writing-for-agents` | Write documents (skills, AGENTS.md) that agents can actually follow |
 
-### Misc (4, rarely used upstream, not promoted in their plugin)
+Each enabled skill is a single-level `skills/<name>/` directory with its
+resources (`agents/openai.yaml`, `scripts/*`, reference `.md`) kept alongside.
+DSH discovers them exactly like any local skill.
 
-| Skill | What it does |
-|---|---|
-| `git-guardrails-claude-code` | Claude Code hooks that block dangerous git commands before they run |
-| `migrate-to-shoehorn` | Migrate test files from `as` assertions to `@total-typescript/shoehorn` |
-| `scaffold-exercises` | Create exercise directory structures that pass linting |
-| `setup-pre-commit` | Set up Husky + lint-staged + type checking + tests |
+### Disabled skills (30)
 
-### In-progress (8, upstream beta: public on purpose, feedback wanted, content may change)
+Not shipped today, kept one edit away:
 
-| Skill | What it does |
-|---|---|
-| `chief-of-staff` | Pursue a long-running goal in one session by coordinating sub-agents |
-| `claude-handoff` | Hand the conversation off to a fresh background agent |
-| `loop-me` | Grill the user about specs for the workflows they want to build |
-| `setup-ts-deep-modules` | Wire dependency-cruiser so each TypeScript package is a deep module |
-| `software-factory` | Shared language for designing a software factory |
-| `writing-beats` | Writing, exploit: assemble raw material into a journey of beats |
-| `writing-fragments` | Writing, explore: mine raw fragments, no structure yet |
-| `writing-shape` | Writing, exploit: shape raw material into an article, paragraph by paragraph |
+- **Engineering (18):** `ask-matt`, `code-review`, `codebase-design`,
+  `diagnosing-bugs`, `domain-modeling`, `implement`, `implement-spec`,
+  `improve-codebase-architecture`, `pr`, `prototype`, `retro`,
+  `setup-matt-pocock-skills`, `tdd`, `to-spec`, `to-tickets`, `triage`,
+  `wayfinder`, `wizard`
+- **Misc (4):** `git-guardrails-claude-code`, `migrate-to-shoehorn`,
+  `scaffold-exercises`, `setup-pre-commit`
+- **In-progress (8):** `chief-of-staff`, `claude-handoff`, `loop-me`,
+  `setup-ts-deep-modules`, `software-factory`, `writing-beats`,
+  `writing-fragments`, `writing-shape`
 
-Each skill is a single-level `skills/<name>/` directory with its resources
-(`agents/openai.yaml`, `scripts/*`, reference `.md`) kept alongside. DSH discovers
-them exactly like any local skill.
+To ship one, add its name to `enabled-skills.json` and run
+`npm run sync:upstream -- --prune`. `node scripts/sync-upstream.mjs --all`
+ignores the file and ships everything.
 
 ## How to invoke each skill
 
-DSH classifies skills by who may load them. This bundle's 39 skills fall into
-two groups (verified against the real `skill-filesystem` provider):
+DSH classifies skills by who may load them. The 9 enabled skills fall into two
+groups (verified against the real `skill-filesystem` provider):
 
 | Group | Skills | How to use |
 |---|---|---|
-| **Model + user** (15) | `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `pr`, `prototype`, `research`, `tdd`, `wizard`, `grilling`, `writing-for-agents`, `git-guardrails-claude-code`, `migrate-to-shoehorn`, `scaffold-exercises`, `setup-pre-commit` | The model may load them on its own when a task matches; they also appear in the `/` slash menu for you to force-invoke. |
-| **User only** (24) | `ask-matt`, `grill-with-docs`, `implement`, `implement-spec`, `improve-codebase-architecture`, `retro`, `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `triage`, `wayfinder`, `grill-me`, `handoff`, `teach`, `to-questionnaire`, `wait-what`, `chief-of-staff`, `claude-handoff`, `loop-me`, `setup-ts-deep-modules`, `software-factory`, `writing-beats`, `writing-fragments`, `writing-shape` | Only *you* can start them — pick them in the `/` slash menu, or type `/name <args>` in the composer. Most carry `disable-model-invocation: true` upstream. |
+| **Model + user** (3) | `grilling`, `research`, `writing-for-agents` | The model may load them on its own when a task matches; they also appear in the `/` slash menu for you to force-invoke. |
+| **User only** (6) | `grill-with-docs`, `grill-me`, `handoff`, `teach`, `to-questionnaire`, `wait-what` | Only *you* can start them — pick them in the `/` slash menu, or type `/name <args>` in the composer. Most carry `disable-model-invocation: true` upstream. |
 
-> **Why so many are user-only:** upstream marks interactive coaching flows and
+> **Why most are user-only:** upstream marks interactive coaching flows and
 > work-intake flows as user-gesture-only so the model does not start a
 > multi-session process unprompted. To let the model pick one up by itself,
 > remove the `disable-model-invocation: true` line from that skill's `SKILL.md`.
@@ -153,15 +140,17 @@ Upstream changes often; this repo keeps the sync mechanical and reproducible:
 
 ```sh
 npm run check:upstream   # download upstream, validate all skills, report adds/updates/removes (no writes)
-npm run sync:upstream    # write skills/, refresh upstream.json
-node scripts/sync-upstream.mjs --prune   # also delete skills upstream removed
+npm run sync:upstream    # write the enabled skills, refresh upstream.json
+node scripts/sync-upstream.mjs --prune   # also delete skills that are not enabled
+node scripts/sync-upstream.mjs --all     # ignore enabled-skills.json, ship all 39
 ```
 
 The script downloads the upstream tarball, validates every `SKILL.md` against the
 DSH frontmatter contract (`name` equal to the directory and kebab-case,
 `description` present, kebab-case invocation keys), asserts the upstream plugin
-manifest's promoted set is covered, and only then writes. `upstream.json`
-records the synced commit and plugin version.
+manifest's promoted set is covered, and only then writes. It ships only the
+names listed in `enabled-skills.json`. `upstream.json` records the synced
+commit, plugin version, and the enabled/disabled split.
 
 ## Why a plugin vs. just copying to `~/.dsh/skills/`
 
@@ -179,9 +168,9 @@ records the synced commit and plugin version.
   (the profile directory).
 
 > **Note:** the npm tarball intentionally ships only the runtime files
-> (`skills/`, `upstream.json`, `cordis.patch.yml`, `LICENSE`, `README.md`,
-> `README.zh.md`). The full change history lives in the repository's
-> `CHANGELOG.md` on GitHub.
+> (`skills/`, `enabled-skills.json`, `upstream.json`, `cordis.patch.yml`,
+> `LICENSE`, `README.md`, `README.zh.md`). The full change history lives in the
+> repository's `CHANGELOG.md` on GitHub.
 
 ## License & attribution
 
