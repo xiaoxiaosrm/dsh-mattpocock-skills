@@ -1,7 +1,7 @@
 {
   "name": "@mattpocock-community/dsh-engineering-skills",
-  "version": "0.4.0",
-  "description": "DeepSeek Harness (DSH) bundle porting Matt Pocock's 'Engineering for Real Engineers' + 'Productivity' Claude-Code skills (SKILL.md set) into a native DSH skill plugin. Same skill bodies, DSH skill discovery.",
+  "version": "0.5.0",
+  "description": "DeepSeek Harness (DSH) bundle porting Matt Pocock's agent skills (39 skills from the engineering, productivity, misc, and in-progress buckets) into a native DSH skill plugin. Same skill bodies, DSH skill discovery, adapted for DSH 0.2.1-rc.5.",
   "license": "MIT",
   "type": "commonjs",
   "repository": {
@@ -18,13 +18,19 @@
     "claude-code",
     "skills",
     "engineering",
-    "productivity"
+    "productivity",
+    "skill-bundle"
   ],
   "engines": {
     "node": ">=20"
   },
+  "scripts": {
+    "sync:upstream": "node scripts/sync-upstream.mjs",
+    "check:upstream": "node scripts/sync-upstream.mjs --check"
+  },
   "files": [
     "skills",
+    "upstream.json",
     "cordis.patch.yml",
     "LICENSE",
     "README.md"
@@ -35,6 +41,9 @@
     }
   },
   "dependencies": {
-    "@deepseek-ai/dsh-skill-filesystem": "*"
+    "@deepseek-ai/dsh-skill-filesystem": "0.2.1-rc.5"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
   }
 }

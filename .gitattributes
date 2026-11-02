@@ -1,0 +1,7 @@
+# Normalize text files to LF, matching the upstream tarball and the
+# converter in scripts/sync-upstream.mjs. Windows checkouts should not
+# rewrite skill bodies to CRLF.
+* text=auto eol=lf
+
+# Packed release artifacts
+*.tgz binary

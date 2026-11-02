@@ -4,6 +4,58 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
+## [0.5.0] - 2026-11-02
+
+### Added
+
+- **`pr`** (engineering, model-invoked): write a PR body from the fixed
+  Summary / Evidence / Merge Danger template.
+- **8 in-progress skills** from upstream's `in-progress/` beta bucket:
+  `chief-of-staff`, `claude-handoff`, `loop-me`, `setup-ts-deep-modules`,
+  `software-factory`, `writing-beats`, `writing-fragments`, `writing-shape`
+  (user-invoked; upstream marks them beta and may change them).
+- **4 misc skills** from upstream's `misc/` bucket: `git-guardrails-claude-code`,
+  `migrate-to-shoehorn`, `scaffold-exercises`, `setup-pre-commit`.
+- `scripts/sync-upstream.mjs` with `npm run sync:upstream` / `check:upstream`:
+  reproducible upstream sync that validates every `SKILL.md` against DSH's
+  frontmatter contract before writing anything.
+- `upstream.json`: synced upstream commit, plugin version, and the per-skill
+  bucket map.
+- `.gitattributes`: text files normalized to LF.
+
+### Changed
+
+- **Re-synced every skill with upstream `mattpocock-skills` 1.3.2** (commit
+  `4ae2317`, 2026-10-31). Skill bodies, descriptions, and resource files now
+  match upstream, including the `domain-modeling` glossary rename
+  (`CONTEXT-FORMAT.md` → `GLOSSARY-FORMAT.md`), the refreshed
+  `setup-matt-pocock-skills` tracker templates, and the new `wizard`
+  `template.sh`.
+- **Adapted to DSH 0.2.1-rc.5.** `@deepseek-ai/dsh-skill-filesystem` is pinned
+  to `0.2.1-rc.5`: the npm `latest` dist-tag still points at `0.0.1-rc.3`, so
+  the previous `*` range installed a pre-0.2 module whose peer requirements a
+  0.2.1 runtime denies at boot. `@deepseek-ai/cordis ~4.0.5` is now a declared
+  peer. Re-verified the bundle patch contract (`baseUrl` is the profile
+  directory; `!!js` scalars still supported).
+- Plugin now ships **39 skills** (was 27): 20 engineering + 7 productivity +
+  4 misc + 8 in-progress.
+- README rewritten for the 39-skill set, the DSH 0.2.1 requirement, and the
+  upstream sync workflow; invocation table is now 15 model+user / 24 user-only.
+- CONTRIBUTING: the layout rule now covers the four upstream buckets and the
+  validation the sync script performs.
+- `package.json` `files` now includes `upstream.json`; sync scripts added.
+
+### Removed
+
+- **`resolving-merge-conflicts`**: upstream no longer ships it, and
+  `sync-upstream.mjs --prune` removed it from `skills/`.
+
+### Packaging
+
+- `package.json` version `0.4.0` → `0.5.0`.
+- Republished tarball `mattpocock-community-dsh-engineering-skills-0.5.0.tgz`
+  on the GitHub release.
+
 ## [0.4.0] - 2026-09-05
 
 ### Changed
