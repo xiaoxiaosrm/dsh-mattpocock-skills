@@ -2,8 +2,8 @@
 #
 # Brings Matt Pocock's agent skills (originally distributed as a Claude Code
 # plugin by mattpocock/skills) into DeepSeek Harness as native discoverable
-# skills. v0.5.0 ships 39 skills: engineering 20, productivity 7, misc 4,
-# in-progress 8.
+# skills. v0.5.2 ships the 9 skills enabled in `enabled-skills.json`
+# (grill-with-docs, research, and the seven productivity skills).
 #
 # The bundle registers its own host `skill-filesystem` instance in the global
 # skill layer, so the set loads in EVERY DSH surface (web, TUI, headless).
@@ -15,7 +15,7 @@
 # `filesystem` provider, and `includeDefaultRoots: false` keeps this instance
 # scanning ONLY this bundle's own `skills/` directory.
 #
-# Verified against DSH 0.2.1-rc.5 (desktop runtime):
+# Verified against DSH 0.2.2-rc.1 (desktop and web runtimes):
 #
 # - Bundle patches are still merged by `dsh-app-boot` `mountRootInclude`,
 #   which passes the PROFILE directory as the patch `baseUrl`
@@ -24,11 +24,14 @@
 #   `<profile>/node_modules/@mattpocock-community/dsh-engineering-skills/skills/`
 #   after `dsh plugin add` (or the desktop Plugins installer) installs this
 #   package into the profile.
-# - The package pins `@deepseek-ai/dsh-skill-filesystem` to 0.2.1-rc.5 on
-#   purpose. The npm `latest` dist-tag for that package is still 0.0.1-rc.3,
-#   so a `*` range resolves to the pre-0.2 module, whose peer requirements do
-#   not match a 0.2.1 runtime and whose row would be denied at boot. Bump the
-#   pin together with the DSH runtime.
+# - The package pins `@deepseek-ai/dsh-skill-filesystem` to 0.2.2-rc.1 on
+#   purpose. The npm `latest` dist-tag for that package is still 0.0.1-rc.3
+#   (`next` is 0.2.2-rc.1), so a `*` range resolves to the pre-0.2 module,
+#   whose peer requirements do not match a 0.2.2 runtime and whose row would
+#   be denied at boot. Bump the pin together with the DSH runtime: 0.2.2-rc.1
+#   requires exact `@deepseek-ai/dsh-fs`, `dsh-home-paths`, and `dsh-skill` at
+#   0.2.2-rc.1, plus `@deepseek-ai/cordis ~4.1.0` (the version the 0.2.2
+#   runtime ships).
 # - If the package is ever relocated outside a profile's `node_modules`
 #   (manual move, non-pnpm layout, vendored copy), this expression must be
 #   adjusted to the actual location.

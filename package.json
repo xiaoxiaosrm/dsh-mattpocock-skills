@@ -1,7 +1,7 @@
 {
   "name": "@mattpocock-community/dsh-engineering-skills",
-  "version": "0.5.1",
-  "description": "DeepSeek Harness (DSH) bundle porting a curated subset of Matt Pocock's agent skills (9 enabled skills: grill-with-docs, research, and the productivity set) into a native DSH skill plugin. Same skill bodies, DSH skill discovery, adapted for DSH 0.2.1-rc.5.",
+  "version": "0.5.2",
+  "description": "DeepSeek Harness (DSH) bundle porting a curated subset of Matt Pocock's agent skills (9 enabled skills: grill-with-docs, research, and the productivity set) into a native DSH skill plugin. Same skill bodies, DSH skill discovery, adapted for DSH 0.2.2-rc.1.",
   "license": "MIT",
   "type": "commonjs",
   "repository": {
@@ -43,9 +43,9 @@
     }
   },
   "dependencies": {
-    "@deepseek-ai/dsh-skill-filesystem": "0.2.1-rc.5"
+    "@deepseek-ai/dsh-skill-filesystem": "0.2.2-rc.1"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "~4.0.5"
+    "@deepseek-ai/cordis": "~4.1.0"
   }
 }

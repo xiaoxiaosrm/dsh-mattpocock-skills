@@ -5,8 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
-[![DSH runtime](https://img.shields.io/badge/DSH-0.2.1--rc.5-0A84FF.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Release v0.5.1](https://img.shields.io/badge/release-v0.5.1-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases)
+[![DSH runtime](https://img.shields.io/badge/DSH-0.2.2--rc.1-0A84FF.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![Release v0.5.2](https://img.shields.io/badge/release-v0.5.2-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases)
 [![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
 
 > **⚠️ Unofficial community adaptation.** This package is an **adaptation**, not
@@ -29,7 +29,7 @@ each skill's upstream bucket in [`upstream.json`](./upstream.json).
 
 Synced with upstream **`mattpocock-skills` 1.3.2** (commit
 [`4ae2317`](https://github.com/mattpocock/skills/commit/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d),
-2026-10-31). Adapted and verified against **DSH 0.2.1-rc.5**.
+2026-10-31). Adapted and verified against **DSH 0.2.2-rc.1**.
 
 This package ships a curated set: **9 enabled skills** (`grill-with-docs`,
 `research`, and the seven productivity skills). The other 30 upstream skills are
@@ -100,13 +100,13 @@ groups (verified against the real `skill-filesystem` provider):
 
 ## Install
 
-Requires **DSH 0.2.1-rc.5** (the bundle pins
-`@deepseek-ai/dsh-skill-filesystem@0.2.1-rc.5`; bump the pin when you upgrade
+Requires **DSH 0.2.2-rc.1** (the bundle pins
+`@deepseek-ai/dsh-skill-filesystem@0.2.2-rc.1`; bump the pin when you upgrade
 the runtime).
 
 ```sh
 # from the GitHub release (latest published tarball)
-dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.5.0/mattpocock-community-dsh-engineering-skills-0.5.0.tgz
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.5.2/mattpocock-community-dsh-engineering-skills-0.5.2.tgz
 
 # or from a local checkout / tarball
 dsh plugin --profile web add file:./mattpocock-dsh-engineering
@@ -164,7 +164,7 @@ commit, plugin version, and the enabled/disabled split.
   appending `customSkillDirs` to it made the whole set invisible on web. Instead
   this bundle inserts a distinct instance with `providerName: mattpocock` and
   `includeDefaultRoots: false`, isolating its discovery to exactly this bundle's
-  `skills/` directory. Verified against DSH 0.2.1-rc.5's bundle patch `baseUrl`
+  `skills/` directory. Verified against DSH 0.2.2-rc.1's bundle patch `baseUrl`
   (the profile directory).
 
 > **Note:** the npm tarball intentionally ships only the runtime files

@@ -5,8 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Unofficial adaptation](https://img.shields.io/badge/status-unofficial%20adaptation-orange.svg)](https://github.com/mattpocock/skills)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-8257D0.svg)](https://github.com/topics/dsh-plugin)
-[![DSH runtime](https://img.shields.io/badge/DSH-0.2.1--rc.5-0A84FF.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Release v0.5.1](https://img.shields.io/badge/release-v0.5.1-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases)
+[![DSH runtime](https://img.shields.io/badge/DSH-0.2.2--rc.1-0A84FF.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![Release v0.5.2](https://img.shields.io/badge/release-v0.5.2-0A84FF.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases)
 [![GitHub stars](https://img.shields.io/github/stars/xiaoxiaosrm/dsh-mattpocock-skills.svg)](https://github.com/xiaoxiaosrm/dsh-mattpocock-skills)
 
 > **⚠️ 非官方社区移植。** 本包是**移植版**，不是上游项目。技能正文由 **Matt Pocock** 撰写
@@ -24,7 +24,7 @@
 
 已与上游 **`mattpocock-skills` 1.3.2** 同步（commit
 [`4ae2317`](https://github.com/mattpocock/skills/commit/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d)，
-2026-10-31），并针对 **DSH 0.2.1-rc.5** 完成适配与验证。
+2026-10-31），并针对 **DSH 0.2.2-rc.1** 完成适配与验证。
 
 ## 内容 — 9 个启用技能
 
@@ -79,12 +79,12 @@ DSH 按「谁可以加载」给技能分类。这 9 个启用技能分两组（�
 
 ## 安装
 
-需要 **DSH 0.2.1-rc.5**（本包固定依赖 `@deepseek-ai/dsh-skill-filesystem@0.2.1-rc.5`；
+需要 **DSH 0.2.2-rc.1**（本包固定依赖 `@deepseek-ai/dsh-skill-filesystem@0.2.2-rc.1`；
 升级运行时请同步更新这个固定版本）。
 
 ```sh
 # 从 GitHub Release 安装（最新发布的 tarball）
-dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.5.0/mattpocock-community-dsh-engineering-skills-0.5.0.tgz
+dsh plugin --profile web add https://github.com/xiaoxiaosrm/dsh-mattpocock-skills/releases/download/v0.5.2/mattpocock-community-dsh-engineering-skills-0.5.2.tgz
 
 # 或者从本地 checkout / tarball 安装
 dsh plugin --profile web add file:./mattpocock-dsh-engineering
@@ -134,7 +134,7 @@ node scripts/sync-upstream.mjs --all     # 忽略 enabled-skills.json，发布�
   web profile 默认把它设为 `disabled`（「preset 自己负责本地发现」），
   往它上面追加 `customSkillDirs` 会让整套技能在 web 上完全不可见。
   因此本包插入一个独立的实例，`providerName: mattpocock`、`includeDefaultRoots: false`，
-  把自己的发现范围严格限制在本包的 `skills/` 目录。该路径规则已按 DSH 0.2.1-rc.5 的
+  把自己的发现范围严格限制在本包的 `skills/` 目录。该路径规则已按 DSH 0.2.2-rc.1 的
   bundle patch `baseUrl`（profile 目录）验证过。
 
 > **说明：**npm tarball 只发布运行所需文件（`skills/`、`enabled-skills.json`、`upstream.json`、

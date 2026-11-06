@@ -4,6 +4,31 @@ All notable changes to `@mattpocock-community/dsh-engineering-skills` are
 documented here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and uses calendar-ish versions (`0.x.0`).
 
+## [0.5.2] - 2026-11-06
+
+### Changed
+
+- **Adapted to DSH 0.2.2-rc.1.** `@deepseek-ai/dsh-skill-filesystem` is pinned
+  to `0.2.2-rc.1`, the provider the 0.2.2 runtime ships: its peers are exact
+  `@deepseek-ai/dsh-fs`, `dsh-home-paths`, and `dsh-skill` at `0.2.2-rc.1`,
+  plus `@deepseek-ai/cordis ~4.1.0`. The previous `0.2.1-rc.5` pin no longer
+  matched the upgraded runtime, so the profile kept loading the old provider
+  and none of the nine skills appeared.
+- `@deepseek-ai/cordis` is now a declared peer at `~4.1.0`, the Cordis version
+  the 0.2.2 runtime bundles (was `~4.0.5`).
+- Re-verified the bundle patch contract on 0.2.2-rc.1 with
+  `dsh --profile web --dump-config`: the `!!js` self-locating scalar still
+  resolves to the bundle's own `skills/` directory under the profile `baseUrl`,
+  and the `skill-filesystem-mattpocock` row still merges into the global skill
+  layer. The patch entries are unchanged — 0.2.2 still accepts `providerName`,
+  `includeDefaultRoots`, and `customSkillDirs`.
+- README (English and Chinese): runtime requirement, DSH badge, release badge,
+  and install URL moved to 0.2.2-rc.1 / v0.5.2.
+- `package.json` version `0.5.1` → `0.5.2`.
+- The nine enabled skills and their bodies are unchanged: upstream
+  `mattpocock/skills` main is still `4ae2317` (2026-10-31), the commit recorded
+  in `upstream.json`.
+
 ## [0.5.1] - 2026-11-02
 
 ### Changed
